@@ -1,6 +1,4 @@
-from turtle import update
 from uuid import uuid4
-from markupsafe import re
 from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
 
@@ -14,13 +12,15 @@ class Movies(db.Model):
     title = db.Column(db.String(100))
     genre = db.Column(db.String(50))
     year = db.Column(db.Integer())
-    created_at = db.Column(db.DateTime, default=datetime.noe())
+    rating = db.Column(db.Float())
+    created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime)
 
-    def __init__(self, title, genre, year):
+    def __init__(self, title, genre, year, rating):
         self.title = title
         self.genre = genre
         self.year = year
+        self.rating = rating
 
     def __repr__(self):
         return f'{self.title} - {self.year}'
